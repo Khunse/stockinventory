@@ -290,8 +290,20 @@ class StockListTable extends StatelessWidget {
                     DataCell(Text(d.stockCode)),
                     DataCell(Text(d.description)),
                     DataCell(Text("${d.quantity}")),
-                    DataCell(Text("${d.price}")),
-                    DataCell(Text("${d.amount}")),
+                    DataCell(Text(
+                        NumberFormat.decimalPatternDigits(
+                          locale: 'en_us',
+                        ).format(
+                            d.price
+                        )
+                        )),
+                    DataCell(Text(
+                        NumberFormat.decimalPatternDigits(
+                          locale: 'en_us',
+                        ).format(
+                         d.amount
+                        )
+                    )),
               ]);
             }
             ).toList()

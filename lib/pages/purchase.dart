@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:galaxysfassigment/pages/purchasedetail.dart';
 import 'package:galaxysfassigment/service/DatabaseService.dart';
+import 'package:intl/intl.dart';
 import 'package:sqflite/sqflite.dart';
 
 import '../model/Purchase.dart';
@@ -114,7 +115,11 @@ class _PurchaseListTableState extends State<PurchaseListTable> {
                 DataCell(Text( e.purchaseDate)),
                 DataCell(Text( e.invoiceNumber )),
                 DataCell(Text( e.quantity.toString() )),
-                DataCell(Text( e.amount.toString() )),
+                DataCell(Text(
+                    NumberFormat.decimalPatternDigits(
+                      locale: 'en_us',
+                    ).format(e.amount)
+                )),
               ])).toList(),
             ),
           ),
@@ -170,7 +175,12 @@ class _PurchaseListTableState extends State<PurchaseListTable> {
               Column(
                 children: [
                   Text("Total QTY"),
-                  Text(widget.listData.fold(0, (t,a) => a.quantity + t).toString(),style: const TextStyle(
+                  Text(
+    NumberFormat.decimalPatternDigits(
+    locale: 'en_us',
+    ).format(
+        widget.listData.fold(0, (t,a) => a.quantity + t)
+    ),style: const TextStyle(
                     fontSize: 20
                   ),),
                 ],
@@ -180,7 +190,13 @@ class _PurchaseListTableState extends State<PurchaseListTable> {
                 child: Column(
                   children: [
                     Text("Total Amount"),
-                    Text(widget.listData.fold(0, (t,a) => a.amount + t).toString(), style: TextStyle(
+                    Text(
+                        NumberFormat.decimalPatternDigits(
+                          locale: 'en_us',
+                        ).format(
+                            widget.listData.fold(0, (t,a) => a.amount + t)
+                        ),
+                      style: TextStyle(
                       fontSize: 20
                     ),),
                   ],
