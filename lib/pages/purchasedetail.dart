@@ -543,7 +543,7 @@ class _StockFormState extends State<StockForm> {
                 }
 
 
-            }, child: Text("Validation"))
+            }, child: Text("Add"))
           ],
         )
       ),
